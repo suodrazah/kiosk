@@ -98,6 +98,9 @@ if [ $TYPE = "w" ]; then
     read -p "Kiosk URL? (e.g. http://localhost, https://site.example.com): " URL
 fi
 
+#Install audio interface
+sudo snap install pulseaudio pulseaudio
+
 #Force RPi HDMI active
 echo hdmi_drive=2 >> /boot/uboot/config.txt
 
