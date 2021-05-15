@@ -99,7 +99,7 @@ if [ $TYPE = "w" ]; then
 fi
 
 #Force RPi HDMI active
-echo hdmi_drive=2 >>  /boot/uboot/config.txt
+echo hdmi_drive=2 >> /boot/uboot/config.txt
 
 #Configure Kiosk snap
 sudo snap install mir-kiosk
