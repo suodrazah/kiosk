@@ -10,10 +10,12 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
 ```
 
 ## Prerequisites:
-* **Tested on Raspberry Pi 4 and ARM64
-  * Ubuntu Core
-  * Raspberry Pi OS
-  * Ubuntu 20.04 LTS Desktop
+* **Tested on**
+  * Raspberry Pi 4
+    * Ubuntu Core
+    * Raspberry Pi OS
+  * ARM64
+    * Ubuntu 20.04 LTS Desktop
 * **SSH Access**
 * **Zerotier network account**
   * Used for remote management
