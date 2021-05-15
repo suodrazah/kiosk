@@ -19,7 +19,8 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
 * **Designed to be executed on a fresh platform**
 * **All updates are handled**
 * **This will restrict the user to a single fullscreen browser instance with absolutely no access to anything.
-* * This means that if you provide a page with access to the wider web, shenanigans could be had. The local deployment includes a wordpress backend and is useful for deploying your own kiosk.
+  * This still means that if you provide a page with access to the wider web, shenanigans could be had.
+  * The local deployment includes a wordpress backend and is useful for deploying your own kiosk.
 
 ## Deployment:
 * **This will bring up a local or web kiosk**
