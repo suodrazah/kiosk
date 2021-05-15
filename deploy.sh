@@ -95,7 +95,7 @@ if [ $TYPE = "L" ]; then
 
 
 if [ $TYPE = "w" ]; then
-    read -p "Kiosk URL? (e.g. http://localhost, https://site.example.com): " URL
+    read -p "Kiosk URL? (e.g. http://192.168.1.254:8080, https://site.example.com): " URL
 fi
 
 #Install audio interface
