@@ -107,7 +107,7 @@ sudo snap restart mir-kiosk
 
 #Configure webkit snap
 sudo snap install wpe-webkit-mir-kiosk
-sudo snap set wpe-webkit-mir-kiosk url=https://pooseum.suo.guru
+sudo snap set wpe-webkit-mir-kiosk url=$URL
 
 ##To Do
 #echo "Orientation"
