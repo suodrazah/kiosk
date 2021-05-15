@@ -42,8 +42,8 @@ clear
 
 if [ $TYPE = "L" ]; then
 
-	#Set host
-	export URL="http://localhost"
+    #Set host
+    export URL="http://localhost"
 
     #Install Docker and Compose
     curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
@@ -51,6 +51,8 @@ if [ $TYPE = "L" ]; then
 
     #Copy docker-compose.yaml contents
     rm docker-compose.yaml -f
+    
+    read -p "Wordpress DB Password?: " DBPWD
 
     echo "version: '3'" >> docker-compose.yaml
     echo "services:" >> docker-compose.yaml
@@ -65,7 +67,7 @@ if [ $TYPE = "L" ]; then
     echo "    environment:" >> docker-compose.yaml
     echo "      - WORDPRESS_DB_HOST=db" >> docker-compose.yaml
     echo "      - WORDPRESS_DB_USER=db" >> docker-compose.yaml
-    echo "      - WORDPRESS_DB_PASSWORD=ui7q234d7g5xqgui34" >> docker-compose.yaml
+    echo "      - WORDPRESS_DB_PASSWORD=$DBPWD" >> docker-compose.yaml
     echo "      - WORDPRESS_DB_NAME=db" >> docker-compose.yaml
     echo "  db:" >> docker-compose.yaml
     echo "    image:  mariadb" >> docker-compose.yaml
@@ -77,7 +79,7 @@ if [ $TYPE = "L" ]; then
     echo "    environment:" >> docker-compose.yaml
     echo "      - MYSQL_DATABASE=db" >> docker-compose.yaml
     echo "      - MYSQL_USER=db" >> docker-compose.yaml
-    echo "      - MYSQL_PASSWORD=ui7q234d7g5xqgui34" >> docker-compose.yaml
+    echo "      - MYSQL_PASSWORD=$DBPWD" >> docker-compose.yaml
     echo "      - MYSQL_RANDOM_ROOT_PASSWORD='1'" >> docker-compose.yaml
     echo "volumes:" >> docker-compose.yaml
     echo "  wp-data:" >> docker-compose.yaml
