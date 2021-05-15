@@ -112,6 +112,7 @@ sudo snap restart mir-kiosk
 
 #Configure webkit snap
 sudo snap install wpe-webkit-mir-kiosk
+sudo snap connect wpe-webkit-mir-kiosk:wayland
 sudo snap set wpe-webkit-mir-kiosk url=$URL
 
 ##To Do
