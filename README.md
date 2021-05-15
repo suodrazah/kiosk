@@ -17,15 +17,16 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
   * ARM64
     * Ubuntu 20.04 LTS Desktop
 * **SSH Access**
-* **Zerotier network account**
+* **[Zerotier network account](https://www.zerotier.com/)**
   * Used for remote management
 
 ## Notes:
 * **Designed to be executed on a fresh platform**
 * **All updates are handled**
-* **This will restrict the user to a single fullscreen browser instance with absolutely no access to anything.
+* **This will restrict the user to a single fullscreen browser instance with absolutely no access to anything.**
   * This still means that if you provide a page with access to the wider web, shenanigans could be had.
   * The local deployment includes wordpress and is useful for deploying your own kiosk.
+* **Join the configured ZeroTier network and remtoely managed internet connected machine.**
 
 ## Deployment:
 * **This will bring up a local or web kiosk**
