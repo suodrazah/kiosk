@@ -189,7 +189,7 @@ clear
 if [ $TYPE != "w" ]; then
     echo "Done!, rebooting in a few seconds. Browse to the kiosk LAN IP to configure your content"
     hostname -I
-    leep 10
+    sleep 10
     sudo reboot
 fi
 
