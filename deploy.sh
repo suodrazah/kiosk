@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#OS - Raspberry Pi OS or Ubuntu Core. SSH Access to run this script.
-
-#Prerequisites
-#sudo groupadd docker && sudo usermod -aG docker $USER && newgrp docker
-#SSH Access to kiosk
-
 #Update
 sudo apt update && sudo apt upgrade -y && sudo apt install net-tools -y
 
