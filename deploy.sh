@@ -10,7 +10,7 @@ sudo apt install snapd -y
 sudo apt install curl -y
 
 #Setup firewall
-sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow 80/tcp && sudo ufw allow 22/tcp && sudo ufw --force enable
+sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow 22/tcp && sudo ufw --force enable
 
 #Get ZeroTier config ready
 clear
@@ -48,9 +48,12 @@ if [ $TYPE = "L" ]; then
     clear
     
     if [ $LOCALTYPE = "W" ]; then
-    
+
         #Set host
         export URL="http://localhost"
+        
+        #Configure firewall (big files, you'll wnt local network access)
+        sudo ufw allow 80/tcp 
     
         #Install Docker and Compose
         curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
@@ -103,6 +106,9 @@ if [ $TYPE = "L" ]; then
     
         #Set host
         export URL="http://localhost"
+
+        #Configure firewall (big files, you'll wnt local network access)
+        sudo ufw allow 80/tcp && sudo ufw allow 81/tcp
     
         #Install Docker and Compose
         curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
@@ -122,11 +128,15 @@ if [ $TYPE = "L" ]; then
         echo "      - web-data:/usr/share/nginx/html" >> docker-compose.yaml
         echo "    networks:" >> docker-compose.yaml
         echo "      - internal-network" >> docker-compose.yaml
+        echo "    ports:" >> docker-compose.yaml
+        echo "      - 80:80" >> docker-compose.yaml
         echo "  filebrowser:" >> docker-compose.yaml
         echo "    image: hurlenko/filebrowser" >> docker-compose.yaml
         echo "    restart: always" >> docker-compose.yaml
         echo "    networks:" >> docker-compose.yaml
         echo "      - internal-network" >> docker-compose.yaml
+        echo "    ports:" >> docker-compose.yaml
+        echo "      - 81:8080" >> docker-compose.yaml
         echo "    environment:" >> docker-compose.yaml
         echo "      - TZ=Australia/Hobart" >> docker-compose.yaml
         echo "    volumes:" >> docker-compose.yaml
@@ -175,6 +185,6 @@ sudo snap set wpe-webkit-mir-kiosk url=$URL
 #echo "Screen is mirrored"
 
 clear
-echo "Done!, rebooting in a few seconds"
+echo "Done!, rebooting in a few seconds. Browse to Kiosk IP for Wordpress or NGINX, and IP:81 for Filebrowser to managew NGINX content"
 sleep 5
 sudo reboot
