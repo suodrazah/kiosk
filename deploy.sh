@@ -156,7 +156,7 @@ sudo snap install pulseaudio pulseaudio
 #Force RPi HDMI active
 echo hdmi_drive=2 >> /boot/uboot/config.txt
 
-#Configure Kiosk snap
+#Configure Kiosk snap ####sudo apt install miral-kiosk
 sudo snap install mir-kiosk
 sudo snap set mir-kiosk cursor=none
 sudo snap set mir-kiosk daemon=true
