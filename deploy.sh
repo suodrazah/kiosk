@@ -109,16 +109,14 @@ if [ $TYPE = "L" ]; then
 
         #Configure firewall (big files, you'll wnt local network access)
         sudo ufw allow 80/tcp && sudo ufw allow 81/tcp
-    
+
         #Install Docker and Compose
         curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
         sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
-    
+
         #Copy docker-compose.yaml contents
         rm docker-compose.yaml -f
-        
-        read -p "Wordpress DB Password?: " DBPWD
-    
+
         echo "version: '3.3'" >> docker-compose.yaml
         echo "services:" >> docker-compose.yaml
         echo "  nginx:" >> docker-compose.yaml
