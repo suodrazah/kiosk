@@ -20,6 +20,9 @@ read -p "Zerotier Network ID?: " ZEROTIER
 curl -s https://install.zerotier.com | sudo bash
 sudo zerotier-cli join $ZEROTIER
 
+#Configure CoreOS
+sudo console-conf
+
 #Update Timezone
 read -p "Timezone? (Australia/Hobart): " TIMEZONE
 TIMEZONE=${TIMEZONE:-Australia/Hobart}
