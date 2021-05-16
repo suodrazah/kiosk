@@ -19,14 +19,22 @@ read -p "Zerotier Network ID?: " ZEROTIER
 #Join zerotier network
 curl -s https://install.zerotier.com | sudo bash
 sudo zerotier-cli join $ZEROTIER
+sleep 2
 
-#Configure CoreOS
-sudo console-conf
+clear
+
+#Configure Raspberry Pi OS
+sudo raspi-config
+
+clear
 
 #Update Timezone
 read -p "Timezone? (Australia/Hobart): " TIMEZONE
 TIMEZONE=${TIMEZONE:-Australia/Hobart}
 sudo timedatectl set-timezone Australia/Hobart
+sleep 2
+
+clear
 
 #Choose deployment type
 echo "Local or Web kiosk deployment (L/w)?"
@@ -63,7 +71,7 @@ if [ $TYPE = "L" ]; then
         rm docker-compose.yaml -f
         
         read -p "Wordpress DB Password?: " DBPWD
-    
+        clear
         echo "version: '3'" >> docker-compose.yaml
         echo "services:" >> docker-compose.yaml
         echo "  wp:" >> docker-compose.yaml
@@ -116,7 +124,7 @@ if [ $TYPE = "L" ]; then
 
         #Copy docker-compose.yaml contents
         rm docker-compose.yaml -f
-
+        clear
         echo "version: '3.3'" >> docker-compose.yaml
         echo "services:" >> docker-compose.yaml
         echo "  nginx:" >> docker-compose.yaml
@@ -152,7 +160,6 @@ if [ $TYPE = "L" ]; then
         fi   
     
     fi
-
 
 if [ $TYPE = "w" ]; then
     read -p "Kiosk URL? (e.g. http://192.168.1.254:8080, https://site.example.com): " URL
