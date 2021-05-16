@@ -105,7 +105,7 @@ if [ $TYPE = "L" ]; then
      if [ $LOCALTYPE = "n" ]; then
     
         #Set host
-        export URL="http://localhost"
+        export URL="http://localhost:81"
 
         #Configure firewall (big files, you'll wnt local network access)
         sudo ufw allow 80/tcp && sudo ufw allow 81/tcp
@@ -129,14 +129,14 @@ if [ $TYPE = "L" ]; then
         echo "    networks:" >> docker-compose.yaml
         echo "      - internal-network" >> docker-compose.yaml
         echo "    ports:" >> docker-compose.yaml
-        echo "      - 80:80" >> docker-compose.yaml
+        echo "      - 81:80" >> docker-compose.yaml
         echo "  filebrowser:" >> docker-compose.yaml
         echo "    image: hurlenko/filebrowser" >> docker-compose.yaml
         echo "    restart: always" >> docker-compose.yaml
         echo "    networks:" >> docker-compose.yaml
         echo "      - internal-network" >> docker-compose.yaml
         echo "    ports:" >> docker-compose.yaml
-        echo "      - 81:8080" >> docker-compose.yaml
+        echo "      - 80:8080" >> docker-compose.yaml
         echo "    environment:" >> docker-compose.yaml
         echo "      - TZ=Australia/Hobart" >> docker-compose.yaml
         echo "    volumes:" >> docker-compose.yaml
@@ -185,6 +185,15 @@ sudo snap set wpe-webkit-mir-kiosk url=$URL
 #echo "Screen is mirrored"
 
 clear
-echo "Done!, rebooting in a few seconds. Browse to Kiosk IP for Wordpress or NGINX, and IP:81 for Filebrowser to managew NGINX content"
-sleep 5
+
+if [ $TYPE != "w" ]; then
+    echo "Done!, rebooting in a few seconds. Browse to the kiosk LAN IP to configure your content"
+    hostname -I
+    leep 10
+    sudo reboot
+fi
+
+echo "Done!, rebooting in a few seconds."
+
+sleep 10
 sudo reboot
