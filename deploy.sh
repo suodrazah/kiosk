@@ -21,7 +21,7 @@ if [ $ROTATE = "y" ]; then
    HDMI=${HDMI:-0}
    DISPLAY=:0 xrandr --output HDMI-$HDMI --rotate $ROTATION
    if [ $INVERT = "y" ]; then
-       DISPLAY=:0 xrandr --output HDMI-$HDMI --rotate invert
+       DISPLAY=:0 xrandr --output HDMI-$HDMI --rotate inverted
    fi
 fi
 
