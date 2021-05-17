@@ -5,7 +5,7 @@ export BRANCH=main
 clear
 
 #Rotate screen
-read -p "Rotate HDMI Screen? (Y/n): " ROTATE
+read -p "Rotate Screen? (Y/n): " ROTATE
 ROTATE=${ROTATE:-Y}
 if [ $ROTATE = "Y" ]; then
    read -p "HDMI 0 or 1? (0): " HDMI   
