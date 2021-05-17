@@ -69,6 +69,7 @@ if [ $TYPE = "L" ]; then
         rm docker-compose.yaml -f
         
         read -p "Wordpress DB Password?: " DBPWD
+        export DBPWD=$DBPWD
         clear
         echo "version: '3'" >> docker-compose.yaml
         echo "services:" >> docker-compose.yaml
@@ -163,9 +164,19 @@ if [ $TYPE = "w" ]; then
     read -p "Kiosk URL? (e.g. http://192.168.1.254:8080, https://site.example.com): " URL
 fi
 
-clear
+#Install minimum GUI components
+sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox -y
 
-#DEPLOY FRONT END#
+#Configure Autostart
+export URL=$URL
+sudo echo "xset -dpms" >> /etc/xdg/openbox/autostart
+sudo echo "xset s noblank" >> /etc/xdg/openbox/autostart
+sudo echo "xset s off" >> /etc/xdg/openbox/autostart
+sudo echo "chromium-browser --incognito --disable-pinch --overscroll-history-navigation=0 --ignore-gpu-blocklist --enable-accelerated-video-decode --enable-gpu-rasterization  --noerrdialogs --disable-infobars --check-for-update-interval=31536000 --kiosk $URL">> /etc/xdg/openbox/autostart
+
+#Start GUI on boot
+sudo echo "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && startx -- -nocursor" >> ~/.bash_profile
+source ~/.bash_profile
 
 clear
 
