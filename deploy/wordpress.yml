@@ -2,6 +2,7 @@ version: '3.3'
 services:
   wp:
     image:  wordpress
+    restart: always
     volumes:
       - wp-data:/var/www/htmll
     networks:
@@ -15,6 +16,7 @@ services:
       - WORDPRESS_DB_NAME=db
   db:l
     image:  mariadb
+    restart: always
     volumes:
       - db_config:/config
       - db:/var/lib/mysql
