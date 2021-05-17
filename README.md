@@ -13,7 +13,6 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
 * **Tested on**
   * [Raspberry Pi 4 4GB](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
     * [Raspberry Pi OS 32-bit](https://www.raspberrypi.org/software/)
-    * [Ubuntu Server 20.04 LTS 64-bit](https://ubuntu.com/download/raspberry-pi)
 * **SSH Access**
 * **[Zerotier network account](https://www.zerotier.com/)**
   * Used for remote management
