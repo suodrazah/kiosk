@@ -1,10 +1,8 @@
 #!/bin/bash
+clear
 
-#Update
-sudo apt update && sudo apt upgrade -y && sudo apt install net-tools -y
-
-#Install curl
-sudo apt install curl -y
+#Update and install required tools
+sudo apt update && sudo apt upgrade -y && sudo apt install net-tools curl -y
 
 #Setup firewall
 sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow 22/tcp && sudo ufw --force enable
@@ -21,9 +19,12 @@ sleep 2
 clear
 
 #Configure Raspberry Pi OS
+echo "Launching Rapsberry Pi Config Tool in 10 seconds"
+echo "Please set System Options -> Boot/Autologin -> Console Autologin"
+sleep 10
 sudo raspi-config
-
 clear
+sudo raspi-config nonint do_overscan 0
 
 #Update Timezone
 read -p "Timezone? (Australia/Hobart): " TIMEZONE
@@ -57,7 +58,7 @@ if [ $TYPE = "L" ]; then
         #Set host
         export URL="http://localhost"
         
-        #Configure firewall (big files, you'll wnt local network access)
+        #Configure firewall (you'll want local network access in lieu of ZeroTier for transferring videos)
         sudo ufw allow 80/tcp 
     
         #Install Docker and Compose
@@ -112,7 +113,7 @@ if [ $TYPE = "L" ]; then
         #Set host
         export URL="http://localhost:81"
 
-        #Configure firewall (big files, you'll wnt local network access)
+        #Configure firewall (you'll want local network access in lieu of ZeroTier for transferring videos)
         sudo ufw allow 80/tcp && sudo ufw allow 81/tcp
 
         #Install Docker and Compose
@@ -162,34 +163,14 @@ if [ $TYPE = "w" ]; then
     read -p "Kiosk URL? (e.g. http://192.168.1.254:8080, https://site.example.com): " URL
 fi
 
-#Install audio interface
-sudo snap install pulseaudio pulseaudio
+clear
 
-#Force RPi HDMI active
-echo hdmi_drive=2 >> /boot/uboot/config.txt
-
-#Configure Kiosk snap ####sudo apt install miral-kiosk
-sudo snap install mir-kiosk
-sudo snap set mir-kiosk cursor=none
-sudo snap set mir-kiosk daemon=true
-sudo snap restart mir-kiosk
-
-#Configure webkit snap
-sudo snap install wpe-webkit-mir-kiosk
-sudo snap connect wpe-webkit-mir-kiosk:wayland
-sudo snap set wpe-webkit-mir-kiosk url=$URL
-
-##To Do
-#echo "Orientation"
-#echo "Screen is rotated 90° CW"
-#echo "Screen is rotated 90° CCW"
-#echo "Screen is rotated 180°"
-#echo "Screen is mirrored"
+#DEPLOY FRONT END#
 
 clear
 
 if [ $TYPE != "w" ]; then
-    echo "Done!, rebooting in a few seconds. Browse to the kiosk LAN IP to configure your content"
+    echo "Done!, rebooting in a few seconds. Browse to the kiosk LAN IP (locally or ZeroTier) to configure your content"
     hostname -I
     sleep 10
     sudo reboot
