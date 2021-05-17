@@ -11,8 +11,8 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
 
 ## Prerequisites:
 * **Tested on**
-  * [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
-    * [Raspberry Pi OS 64-Bit](https://www.raspberrypi.org/software/)
+  * [Raspberry Pi 4 4GB](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
+    * [Raspberry Pi OS 32-Bit](https://www.raspberrypi.org/software/)
 * **SSH Access**
 * **[Zerotier network account](https://www.zerotier.com/)**
   * Used for remote management
@@ -24,6 +24,7 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
   * This still means that if you provide a page with access to the wider web, shenanigans could be had.
   * The local deployment includes wordpress and is useful for deploying your own kiosk.
 * **Join the configured ZeroTier network and remtoely managed internet connected machine.**
+* Highly recommend using VP9 codec in order to utilise RPi hardware acceleration.
 
 ## Deployment:
 * **This will bring up a local or web kiosk**
