@@ -3,29 +3,6 @@
 export BRANCH=main
 
 clear
-sudo apt update && sudo apt upgrade -y
-sudo apt install x11-xserver-utils -y
-
-clear
-
-#Rotate screen
-read -p "Rotate Screen? (N/y): " ROTATE
-ROTATE=${ROTATE:-N}
-if [ $ROTATE = "y" ]; then
-   read -p "HDMI 0 or 1? (0): " HDMI   
-   read -p "Rotate normal, left or right (normal): " ROTATION
-   read -p "invert? (y/N): " INVERT
-   HDMI=${HDMI:-0}
-   ROTATION=${ROTATION:-normal}
-   INVERT=${INVERT:-N}
-   HDMI=${HDMI:-0}
-   DISPLAY=:0 xrandr --output HDMI-$HDMI --rotate $ROTATION
-   if [ $INVERT = "y" ]; then
-       DISPLAY=:0 xrandr --output HDMI-$HDMI --rotate inverted
-   fi
-fi
-
-
 #Change default password
 read -p "You should definitely change the default password, do this now? (Y/n): " CHANGEPWD
 CHANGEPWD=${CHANGEPWD:-Y}
@@ -142,7 +119,7 @@ if [ $TYPE = "w" ]; then
 fi
 
 #Install minimum GUI components
-sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox -y
+sudo apt update && sudo apt upgrade -y && sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox -y
 
 #Install Chromium
 sudo apt-get install --no-install-recommends chromium-browser
