@@ -24,7 +24,6 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
   * This still means that if you provide a page with access to the wider web, shenanigans could be had.
   * The local deployment includes wordpress and is useful for deploying your own kiosk.
 * **Join the configured ZeroTier network and remtoely managed internet connected machine.**
-* 
 
 ## Deployment:
 * **This will bring up a local or web kiosk**
