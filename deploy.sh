@@ -112,6 +112,9 @@ fi
 #Install minimum GUI components
 sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox -y
 
+#Install Chromium
+sudo apt-get install --no-install-recommends chromium-browser
+
 #Configure Autostart
 export URL=$URL
 sudo echo "xset -dpms" >> /etc/xdg/openbox/autostart
