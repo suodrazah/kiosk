@@ -24,6 +24,7 @@ clear
 #Configure Raspberry Pi OS
 echo "Launching Rapsberry Pi Config Tool in 10 seconds"
 echo "Please set System Options -> Boot/Autologin -> Console Autologin"
+echo "Then \"Finish\" without rebooting"
 sleep 10
 sudo raspi-config
 clear
