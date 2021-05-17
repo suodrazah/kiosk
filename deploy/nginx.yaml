@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - nginx-data:/etc/nginx
+      - web-data:/usr/share/nginx/html
+    networks:
+      - internal-network
+    ports:
+      - 81:80
+  filebrowser:
+    image: hurlenko/filebrowser
+    restart: always
+    networks:
+      - internal-network
+    ports:
+      - 80:8080
+    environment:
+      - TZ=Australia/Hobart
+    volumes:
+      - filebrowser-data:/config
+      - web-data:/data
+networks:
+  internal-network:
+volumes:
+  nginx-data:
+  filebrowser-data:
+  web-data:
