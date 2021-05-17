@@ -10,10 +10,13 @@ if [ $CHANGEPWD = "Y" ]; then
    passwd
 fi
 
+#Update
+sudo apt update && sudo apt upgrade -y 
 
+#Install minimum GUI components
+sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox -y
 
-
-#Update and install required tools
+#Install required tools
 sudo apt install net-tools curl -y
 
 #Setup firewall
@@ -117,9 +120,6 @@ if [ $TYPE = "L" ]; then
 if [ $TYPE = "w" ]; then
     read -p "Kiosk URL? (e.g. http://192.168.1.254:8080, https://site.example.com): " URL
 fi
-
-#Install minimum GUI components
-sudo apt update && sudo apt upgrade -y && sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox -y
 
 #Install Chromium
 sudo apt-get install --no-install-recommends chromium-browser
