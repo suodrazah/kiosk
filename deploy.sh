@@ -3,6 +3,10 @@
 export BRANCH=main
 
 clear
+sudo apt update && sudo apt upgrade -y
+sudo apt install x11-xserver-utils -y
+
+clear
 
 #Rotate screen
 read -p "Rotate Screen? (N/y): " ROTATE
@@ -22,7 +26,6 @@ if [ $ROTATE = "y" ]; then
 fi
 
 
-
 #Change default password
 read -p "You should definitely change the default password, do this now? (Y/n): " CHANGEPWD
 CHANGEPWD=${CHANGEPWD:-Y}
@@ -34,7 +37,7 @@ fi
 
 
 #Update and install required tools
-sudo apt update && sudo apt upgrade -y && sudo apt install net-tools curl -y
+sudo apt install net-tools curl -y
 
 #Setup firewall
 sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow 22/tcp && sudo ufw --force enable
