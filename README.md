@@ -1,5 +1,5 @@
 # <p align="center">Kiosk</p>
-### <p align="center">Web Kiosk Deployment Script</p>
+### <p align="center">Local or Web Kiosk Deployment Script</p>
 
 ## tl;dr
 ```
