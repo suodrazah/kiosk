@@ -5,9 +5,9 @@ export BRANCH=main
 clear
 
 #Rotate screen
-read -p "Rotate Screen? (Y/n): " ROTATE
-ROTATE=${ROTATE:-Y}
-if [ $ROTATE = "Y" ]; then
+read -p "Rotate Screen? (N/y): " ROTATE
+ROTATE=${ROTATE:-N}
+if [ $ROTATE = "y" ]; then
    read -p "HDMI 0 or 1? (0): " HDMI   
    read -p "Rotate normal, left or right (normal): " ROTATION
    read -p "invert? (y/N): " INVERT
