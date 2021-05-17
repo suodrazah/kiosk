@@ -4,10 +4,29 @@ export BRANCH=main
 
 clear
 
+#Rotate screen
+read -p "Rotate HDMI Screen? (Y/n): " ROTATE
+ROTATE=${ROTATE:-Y}
+if [ $ROTATE = "Y" ]; then
+   read -p "HDMI 0 or 1? (0): " HDMI   
+   read -p "Rotate normal, left or right (normal): " ROTATION
+   read -p "invert? (y/N): " INVERT
+   HDMI=${HDMI:-0}
+   ROTATION=${ROTATION:-normal}
+   INVERT=${INVERT:-N}
+   HDMI=${HDMI:-0}
+   DISPLAY=:0 xrandr --output HDMI-$HDMI --rotate $ROTATION
+   if [ $INVERT = "y" ]; then
+       DISPLAY=:0 xrandr --output HDMI-$HDMI --rotate invert
+   fi
+fi
+
+
+
 #Change default password
 read -p "You should definitely change the default password, do this now? (Y/n): " CHANGEPWD
 CHANGEPWD=${CHANGEPWD:-Y}
-if [ $UPDATE = "Y" ]; then
+if [ $CHANGEPWD = "Y" ]; then
    passwd
 fi
 
