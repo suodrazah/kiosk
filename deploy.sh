@@ -59,8 +59,8 @@ clear
 if [ $TYPE = "L" ]; then
 
     echo "Wordpress or NGINX (W/n)?"
-    echo "Wordpress - Installs Wordpress and DB. Binds Kiosk address to localhost."
-    echo "NGINX - Installs NGINX and Filebrowser. Binds Kiosk to localhost."
+    echo "Wordpress - Installs Wordpress and DB."
+    echo "NGINX - Installs NGINX and Filebrowser."
     echo "............."
     read LOCALTYPE
     TYPE=${LOCALTYPE:-W}
