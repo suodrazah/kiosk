@@ -76,7 +76,7 @@ if [ $TYPE = "L" ]; then
         #Download relevant yaml
         rm docker-compose.yaml -f && rm docker-compose.yml -f
         clear
-        curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/wordpress.yml -o docker-compose.yml && docker compose up -d
+        curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/wordpress.yml -o docker-compose.yml
 
         #Deploy containers
         docker-compose up -d
@@ -97,7 +97,7 @@ if [ $TYPE = "L" ]; then
         #Download relevant yaml
         rm docker-compose.yaml -f && rm docker-compose.yml -f
         clear
-        curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/nginx.yml -o docker-compose.yml && docker compose up -d
+        curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/nginx.yml -o docker-compose.yml
     
         #Deploy containers
         docker-compose up -d
