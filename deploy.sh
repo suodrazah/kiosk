@@ -10,6 +10,17 @@ if [ $CHANGEPWD = "Y" ]; then
    passwd
 fi
 
+#Configure Raspberry Pi OS
+echo "Launching Rapsberry Pi Config Tool in 10 seconds"
+echo "Please set System Options -> Boot/Autologin -> Console Autologin"
+echo "Then \"Finish\" without rebooting"
+sleep 10
+sudo raspi-config
+clear
+#sudo ln -sf /etc/systemd/default.target /lib/systemd/system/multi.user.target
+sudo raspi-config nonint do_overscan 0
+clear
+
 #Update
 sudo apt update && sudo apt upgrade -y 
 
@@ -29,16 +40,6 @@ sudo zerotier-cli join $ZEROTIER
 sleep 2
 
 clear
-
-#Configure Raspberry Pi OS
-echo "Launching Rapsberry Pi Config Tool in 10 seconds"
-echo "Please set System Options -> Boot/Autologin -> Console Autologin"
-echo "Then \"Finish\" without rebooting"
-sleep 10
-sudo raspi-config
-clear
-#sudo ln -sf /etc/systemd/default.target /lib/systemd/system/multi.user.target
-sudo raspi-config nonint do_overscan 0
 
 #Update Timezone
 read -p "Timezone? (Australia/Hobart): " TIMEZONE
