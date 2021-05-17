@@ -3,9 +3,6 @@
 #Update
 sudo apt update && sudo apt upgrade -y && sudo apt install net-tools -y
 
-#Install snap
-sudo apt install snapd -y
-
 #Install curl
 sudo apt install curl -y
 
