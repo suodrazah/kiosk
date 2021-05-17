@@ -4,6 +4,16 @@ export BRANCH=main
 
 clear
 
+#Change default password
+read -p "You should definitely change the default password, do this now? (Y/n): " CHANGEPWD
+CHANGEPWD=${CHANGEPWD:-Y}
+if [ $UPDATE = "Y" ]; then
+   passwd
+fi
+
+
+
+
 #Update and install required tools
 sudo apt update && sudo apt upgrade -y && sudo apt install net-tools curl -y
 
