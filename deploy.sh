@@ -141,7 +141,7 @@ source ~/.bash_profile
 clear
 
 if [ $TYPE != "w" ]; then
-    echo "Done!, rebooting in a few seconds. Browse to the kiosk LAN IP (locally or ZeroTier) to configure your content"
+    echo "Done!, rebooting in a few seconds. Using another PC, browse to the kiosk LAN IP (locally or ZeroTier) to configure your content"
     hostname -I
     sleep 10
     sudo reboot
