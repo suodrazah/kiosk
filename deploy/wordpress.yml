@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  wp:
+    image:  wordpress
+    volumes:
+      - wp-data:/var/www/htmll
+    networks:
+      - internal-network
+    ports:
+      - 80:80
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=db
+      - WORDPRESS_DB_PASSWORD=${DBPWD?Variable not set}
+      - WORDPRESS_DB_NAME=db
+  db:l
+    image:  mariadb
+    volumes:
+      - db_config:/config
+      - db:/var/lib/mysql
+    networks:
+      - internal-network
+    environment:
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=db
+      - MYSQL_PASSWORD=${DBPWD?Variable not set}
+      - MYSQL_RANDOM_ROOT_PASSWORD='1'
+volumes:
+  wp-data:
+  db_config:
+  db:
+networks:
+  internal-network:
