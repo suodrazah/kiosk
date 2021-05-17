@@ -136,6 +136,10 @@ if [ $TYPE != "w" ]; then
     sudo reboot
 fi
 
+#Disable no password Sudo
+sudo rm /etc/sudoers.d/010_pi-nopasswd
+sudo echo "pi ALL=(ALL) PASSWD: ALL" >> /etc/sudoers.d/010_pi-nopasswd
+
 echo "Done!, rebooting in a few seconds."
 
 sleep 10
