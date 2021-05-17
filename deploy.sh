@@ -117,6 +117,7 @@ sudo apt-get install --no-install-recommends chromium-browser
 
 #Configure Autostart
 export URL=$URL
+sudo bash -c 'rm /etc/xdg/openbox/autostart'
 sudo bash -c 'echo "xset -dpms" >> /etc/xdg/openbox/autostart'
 sudo bash -c 'echo "xset s noblank" >> /etc/xdg/openbox/autostart'
 sudo bash -c 'echo "xset s off" >> /etc/xdg/openbox/autostart'
