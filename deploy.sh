@@ -149,6 +149,7 @@ fi
 
 #Disable no password Sudo
 sudo rm /etc/sudoers.d/010_pi-nopasswd
+sudo bash -c 'echo "pi ALL=(ALL) PASSWD: ALL" > /etc/sudoers.d/010_pi-nopasswd'
 
 echo "Done!, rebooting in a few seconds."
 
