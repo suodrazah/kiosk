@@ -132,7 +132,7 @@ sudo bash -c 'rm /etc/xdg/openbox/autostart -f'
 sudo bash -c 'echo "xset -dpms" >> /etc/xdg/openbox/autostart'
 sudo bash -c 'echo "xset s noblank" >> /etc/xdg/openbox/autostart'
 sudo bash -c 'echo "xset s off" >> /etc/xdg/openbox/autostart'
-sudo bash -c 'echo "chromium-browser --incognito --disable-pinch --overscroll-history-navigation=0 --ignore-gpu-blocklist --disable-features="TouchpadOverscrollHistoryNavigation" --enable-accelerated-video-decode --enable-gpu-rasterization  --noerrdialogs --disable-infobars --check-for-update-interval=31536000 --kiosk $URL" >> /etc/xdg/openbox/autostart'
+sudo --preserve-env bash -c 'echo "chromium-browser --incognito --disable-pinch --overscroll-history-navigation=0 --ignore-gpu-blocklist --disable-features="TouchpadOverscrollHistoryNavigation" --enable-accelerated-video-decode --enable-gpu-rasterization  --noerrdialogs --disable-infobars --check-for-update-interval=31536000 --kiosk $URL" >> /etc/xdg/openbox/autostart'
 
 #Start GUI on boot
 sudo echo "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && startx -- -nocursor" >> ~/.bash_profile
