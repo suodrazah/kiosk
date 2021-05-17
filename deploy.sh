@@ -1,4 +1,7 @@
 #!/bin/bash
+
+export BRANCH=main
+
 clear
 
 #Update and install required tools
@@ -63,48 +66,17 @@ if [ $TYPE = "L" ]; then
     
         #Install Docker and Compose
         curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
-        sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
-    
-        #Copy docker-compose.yaml contents
-        rm docker-compose.yaml -f
-        
+        curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
+
+        #Get DB Password
         read -p "Wordpress DB Password?: " DBPWD
         export DBPWD=$DBPWD
+        
+        #Download relevant yaml
+        rm docker-compose.yaml -f && rm docker-compose.yml -f
         clear
-        echo "version: '3'" >> docker-compose.yaml
-        echo "services:" >> docker-compose.yaml
-        echo "  wp:" >> docker-compose.yaml
-        echo "    image:  wordpress" >> docker-compose.yaml
-        echo "    volumes:" >> docker-compose.yaml
-        echo "      - wp-data:/var/www/html" >> docker-compose.yaml
-        echo "    networks:" >> docker-compose.yaml
-        echo "      - internal-network" >> docker-compose.yaml
-        echo "    ports:" >> docker-compose.yaml
-        echo "      - 80:80" >> docker-compose.yaml
-        echo "    environment:" >> docker-compose.yaml
-        echo "      - WORDPRESS_DB_HOST=db" >> docker-compose.yaml
-        echo "      - WORDPRESS_DB_USER=db" >> docker-compose.yaml
-        echo "      - WORDPRESS_DB_PASSWORD=$DBPWD" >> docker-compose.yaml
-        echo "      - WORDPRESS_DB_NAME=db" >> docker-compose.yaml
-        echo "  db:" >> docker-compose.yaml
-        echo "    image:  mariadb" >> docker-compose.yaml
-        echo "    volumes:" >> docker-compose.yaml
-        echo "      - db_config:/config" >> docker-compose.yaml
-        echo "      - db:/var/lib/mysql" >> docker-compose.yaml
-        echo "    networks:" >> docker-compose.yaml
-        echo "      - internal-network" >> docker-compose.yaml
-        echo "    environment:" >> docker-compose.yaml
-        echo "      - MYSQL_DATABASE=db" >> docker-compose.yaml
-        echo "      - MYSQL_USER=db" >> docker-compose.yaml
-        echo "      - MYSQL_PASSWORD=$DBPWD" >> docker-compose.yaml
-        echo "      - MYSQL_RANDOM_ROOT_PASSWORD='1'" >> docker-compose.yaml
-        echo "volumes:" >> docker-compose.yaml
-        echo "  wp-data:" >> docker-compose.yaml
-        echo "  db_config:" >> docker-compose.yaml
-        echo "  db:" >> docker-compose.yaml
-        echo "networks:" >> docker-compose.yaml
-        echo "  internal-network:" >> docker-compose.yaml
-    
+        curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/wordpress.yml -o docker-compose.yml && docker compose up -d
+
         #Deploy containers
         docker-compose up -d
         fi
@@ -121,38 +93,10 @@ if [ $TYPE = "L" ]; then
         curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
         sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
 
-        #Copy docker-compose.yaml contents
-        rm docker-compose.yaml -f
+        #Download relevant yaml
+        rm docker-compose.yaml -f && rm docker-compose.yml -f
         clear
-        echo "version: '3.3'" >> docker-compose.yaml
-        echo "services:" >> docker-compose.yaml
-        echo "  nginx:" >> docker-compose.yaml
-        echo "    image: nginx" >> docker-compose.yaml
-        echo "    volumes:" >> docker-compose.yaml
-        echo "      - nginx-data:/etc/nginx" >> docker-compose.yaml
-        echo "      - web-data:/usr/share/nginx/html" >> docker-compose.yaml
-        echo "    networks:" >> docker-compose.yaml
-        echo "      - internal-network" >> docker-compose.yaml
-        echo "    ports:" >> docker-compose.yaml
-        echo "      - 81:80" >> docker-compose.yaml
-        echo "  filebrowser:" >> docker-compose.yaml
-        echo "    image: hurlenko/filebrowser" >> docker-compose.yaml
-        echo "    restart: always" >> docker-compose.yaml
-        echo "    networks:" >> docker-compose.yaml
-        echo "      - internal-network" >> docker-compose.yaml
-        echo "    ports:" >> docker-compose.yaml
-        echo "      - 80:8080" >> docker-compose.yaml
-        echo "    environment:" >> docker-compose.yaml
-        echo "      - TZ=Australia/Hobart" >> docker-compose.yaml
-        echo "    volumes:" >> docker-compose.yaml
-        echo "      - filebrowser-data:/config" >> docker-compose.yaml
-        echo "      - web-data:/data" >> docker-compose.yaml
-        echo "networks:" >> docker-compose.yaml
-        echo "  internal-network:" >> docker-compose.yaml
-        echo "volumes:" >> docker-compose.yaml
-        echo "  nginx-data:" >> docker-compose.yaml
-        echo "  filebrowser-data:" >> docker-compose.yaml
-        echo "  web-data:" >> docker-compose.yaml
+        curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/nginx.yml -o docker-compose.yml && docker compose up -d
     
         #Deploy containers
         docker-compose up -d
