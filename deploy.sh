@@ -17,7 +17,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install net-tools curl -y
 
 #Setup firewall
-sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow 22/tcp && sudo ufw --force enable
+sudo apt install ufw && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow 22/tcp && sudo ufw --force enable
 
 #Get ZeroTier config ready
 clear
@@ -37,6 +37,7 @@ echo "Then \"Finish\" without rebooting"
 sleep 10
 sudo raspi-config
 clear
+#sudo ln -sf /etc/systemd/default.target /lib/systemd/system/multi.user.target
 sudo raspi-config nonint do_overscan 0
 
 #Update Timezone
