@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export BRANCH=main
+export BRANCH=ubuntu_dev
 
 clear
 #Change default password
@@ -10,16 +10,9 @@ if [ $CHANGEPWD = "Y" ]; then
    passwd
 fi
 
-#Configure Raspberry Pi OS
-echo "Launching Rapsberry Pi Config Tool in 10 seconds"
-echo "Please set System Options -> Boot/Autologin -> Console Autologin"
-echo "Then \"Finish\" without rebooting"
-sleep 10
-sudo raspi-config
-clear
-#sudo ln -sf /etc/systemd/default.target /lib/systemd/system/multi.user.target
-sudo raspi-config nonint do_overscan 0
-clear
+sudo bash -c 'rm /etc/gdm3/custom.conf'
+sudo bash -c 'echo "AutomaticLoginEnable = true" > /etc/gdm3/custom.conf'
+sudo --preserve-env bash -c 'echo "AutomaticLogin = $USER" > /etc/gdm3/custom.conf'
 
 #Update
 sudo apt update && sudo apt upgrade -y 
@@ -155,10 +148,6 @@ if [ $TYPE = "n" ]; then
     sleep 10
     sudo reboot
 fi
-
-#Disable no password Sudo
-sudo rm /etc/sudoers.d/010_pi-nopasswd
-sudo bash -c 'echo "pi ALL=(ALL) PASSWD: ALL" > /etc/sudoers.d/010_pi-nopasswd'
 
 echo "Done!, rebooting in a few seconds."
 
