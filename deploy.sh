@@ -14,7 +14,7 @@ fi
 #ENABLE NO PASSWORD
 #sudo systemctl edit getty@tty1.service
 
-#Service]
+#[Service]
 #ExecStart=
 #ExecStart=-/sbin/agetty --noissue --autologin myusername %I $TERM
 #Type=idle
