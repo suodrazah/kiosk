@@ -21,8 +21,6 @@ fi
 
 #Save and close
 
-read -p "auto login ok?" GBYJ
-
 #Update
 sudo apt update && sudo apt upgrade -y 
 
