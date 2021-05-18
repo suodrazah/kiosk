@@ -6,13 +6,23 @@ clear
 #Change default password
 read -p "You should definitely change the default password, do this now? (Y/n): " CHANGEPWD
 CHANGEPWD=${CHANGEPWD:-Y}
+
 if [ $CHANGEPWD = "Y" ]; then
    passwd
 fi
 
-sudo bash -c 'rm /etc/gdm3/custom.conf'
-sudo bash -c 'echo "AutomaticLoginEnable = true" > /etc/gdm3/custom.conf'
-sudo --preserve-env bash -c 'echo "AutomaticLogin = $USER" > /etc/gdm3/custom.conf'
+export USER=$USER
+export TERM=$TERM
+sudo rm /etc/systemd/system/autologin@.service -f
+sudo -c 'echo "[Service]" >> /etc/systemd/system/autologin@.service'
+sudo -c 'echo "ExecStart=" >> /etc/systemd/system/autologin@.service'
+sudo --preserve-env bash -c 'echo "ExecStart=-/sbin/agetty --noissue --autologin $USER %I $TERM" >> /etc/systemd/system/autologin@.service'
+sudo -c 'echo "Type=idle" >> /etc/systemd/system/autologin@.service'
+sudo -c'ln -s /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service'
+sudo systemctl daemon-reload
+sudo enable getty@tty1.service
+
+read -p "auto login ok?" GBYJ
 
 #Update
 sudo apt update && sudo apt upgrade -y 
