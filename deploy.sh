@@ -19,9 +19,9 @@ sudo bash -c 'echo "[Service]" >> /etc/systemd/system/autologin@.service'
 sudo bash -c 'echo "ExecStart=" >> /etc/systemd/system/autologin@.service'
 sudo bash --preserve-env bash -c 'echo "ExecStart=-/sbin/agetty --noissue --autologin $USER %I $TERM" >> /etc/systemd/system/autologin@.service'
 sudo bash -c 'echo "Type=idle" >> /etc/systemd/system/autologin@.service'
-sudo bash -c'ln -s /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service'
+sudo bash -c 'ln -s /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service'
 sudo systemctl daemon-reload
-sudo enable getty@tty1.service
+sudo systemctl enable getty@tty1.service
 
 read -p "auto login ok?" GBYJ
 
