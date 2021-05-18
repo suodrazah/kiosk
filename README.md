@@ -24,6 +24,7 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
   * This still means that if you provide a page with access to the wider web, shenanigans could be had.
   * The local deployment includes wordpress and is useful for deploying your own kiosk.
 * **Join the configured ZeroTier network and remtoely managed internet connected machine.**
+* **Touchscreen and Audio working, Pi4 is recommended for touchscreen compatibility due to the newer USB**
 
 ## Deployment:
 * **This will bring up a local or web kiosk**
@@ -37,3 +38,4 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
 ## To Be Added:
 * **Screen orientation function**
 * **Reboot scheduler tool**
+* **Automatic disabling of system keys and a hotkeys for keyboard + mouse option**
