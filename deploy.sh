@@ -74,10 +74,10 @@ if [ $TYPE = "L" ]; then
 
         #Set host
         export URL="http://localhost"
-        
+
         #Configure firewall (you'll want local network access in lieu of ZeroTier for transferring videos)
-        sudo ufw allow 80/tcp 
-    
+        sudo ufw allow 80/tcp
+
         #Install Docker and Compose
         curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
         sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
