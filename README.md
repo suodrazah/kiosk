@@ -33,3 +33,7 @@ sudo groupadd docker && sudo usermod -aG docker $USER && newgrp docker
 ```
 curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o deploy.sh && sh deploy.sh
 ```
+
+## To Be Added:
+* **Screen orientation function**
+* **Reboot scheduler tool**
