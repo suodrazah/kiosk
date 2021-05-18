@@ -80,7 +80,7 @@ if [ $TYPE = "L" ]; then
     
         #Install Docker and Compose
         curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
-        curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
+        sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
 
         #Get DB Password
         read -p "Wordpress DB Password?: " DBPWD
