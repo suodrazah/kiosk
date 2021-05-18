@@ -6,7 +6,7 @@
 sudo groupadd docker && sudo usermod -aG docker $USER && newgrp docker
 ```
 ```
-curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/dev_ubuntu/deploy.sh -o deploy.sh && sh deploy.sh
+curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/ubuntu_dev/deploy.sh -o deploy.sh && sh deploy.sh
 ```
 
 ## Prerequisites:
