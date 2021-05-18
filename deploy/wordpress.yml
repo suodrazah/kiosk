@@ -12,7 +12,7 @@ services:
     environment:
       - WORDPRESS_DB_HOST=db
       - WORDPRESS_DB_USER=db
-      - WORDPRESS_DB_PASSWORD=${DBPWD?Variable not set}
+      - WORDPRESS_DB_PASSWORD=7w4vw5vgw547gvw7vgw5766gvw
       - WORDPRESS_DB_NAME=db
   db:
     image:  mariadb
@@ -25,7 +25,7 @@ services:
     environment:
       - MYSQL_DATABASE=db
       - MYSQL_USER=db
-      - MYSQL_PASSWORD=${DBPWD?Variable not set}
+      - MYSQL_PASSWORD=7w4vw5vgw547gvw7vgw5766gvw
       - MYSQL_RANDOM_ROOT_PASSWORD='1'
 volumes:
   wp-data:
