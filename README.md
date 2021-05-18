@@ -11,8 +11,8 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
 
 ## Prerequisites:
 * **Tested on**
-  * [Raspberry Pi 4 4GB](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
-    * [Raspberry Pi OS 32-bit](https://www.raspberrypi.org/software/)
+  * AMD64
+    * [Ubuntu Server 20.04 LTS 64-bit & 32-bit](https://ubuntu.com/download/server/)
 * **SSH Access**
 * **[Zerotier network account](https://www.zerotier.com/)**
   * Used for remote management
@@ -22,9 +22,8 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/main/deploy.sh -o d
 * **All updates are handled**
 * **This will restrict the user to a single fullscreen browser instance.**
   * This still means that if you provide a page with access to the wider web, shenanigans could be had.
-  * The local deployment includes wordpress and is useful for deploying your own kiosk.
+  * The local deployment includes wordpress or nginx and is useful for deploying your own kiosk.
 * **Join the configured ZeroTier network and remtoely managed internet connected machine.**
-* **Touchscreen and Audio working, Pi4 is recommended for touchscreen compatibility due to the newer USB**
 
 ## Deployment:
 * **This will bring up a local or web kiosk**
