@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export BRANCH=ubuntu_dev
+export BRANCH="ubuntu_dev"
 
 clear
 #Change default password
