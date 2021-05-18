@@ -11,15 +11,15 @@ if [ $CHANGEPWD = "Y" ]; then
    passwd
 fi
 
+
 #ENABLE NO PASSWORD
-#sudo systemctl edit getty@tty1.service
-
-#[Service]
-#ExecStart=
-#ExecStart=-/sbin/agetty --noissue --autologin myusername %I $TERM
-#Type=idle
-
-#Save and close
+export USER=$USER
+{ echo "[Service]"; 
+  echo "ExecStart=";
+  echo "ExecStart=-/sbin/agetty --noissue --autologin $USER %I $TERM";
+  echo "Type=idle"
+  } >~/getty-override.conf
+sudo env SYSTEMD_EDITOR="cp $HOME/getty-override.conf" systemctl edit getty@tty1.service
 
 #Update
 sudo apt update && sudo apt upgrade -y 
