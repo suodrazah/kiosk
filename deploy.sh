@@ -32,12 +32,15 @@ sudo apt install ufw && sudo ufw default deny incoming && sudo ufw default allow
 
 #Get ZeroTier config ready
 clear
-read -p "Zerotier Network ID?: " ZEROTIER
-
-#Join zerotier network
-curl -s https://install.zerotier.com | sudo bash
-sudo zerotier-cli join $ZEROTIER
-sleep 2
+read -p "Zerotier Network ID?: (Press enter to ignore)" ZEROTIER
+ZEROTIER=${ZEROTIER:-X}
+if [ $ZEROTIER != "X" ]; then
+    #Join zerotier network
+    curl -s https://install.zerotier.com | sudo bash
+    sudo zerotier-cli join $ZEROTIER
+    sleep 2
+    exit
+fi
 
 clear
 
