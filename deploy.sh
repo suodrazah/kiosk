@@ -12,16 +12,16 @@ if [ $CHANGEPWD = "Y" ]; then
 fi
 
 #ENABLE NO PASSWORD LOGIN - #TO DO - SEPARATE USERS
-export USER=$USER
-export TERM=$TERM
-sudo rm /etc/systemd/system/autologin@.service -f
-sudo bash -c 'echo "[Service]" >> /etc/systemd/system/autologin@.service'
-sudo bash -c 'echo "ExecStart=" >> /etc/systemd/system/autologin@.service'
-sudo bash --preserve-env bash -c 'echo "ExecStart=-/sbin/agetty --noissue --autologin $USER %I $TERM" >> /etc/systemd/system/autologin@.service'
-sudo bash -c 'echo "Type=idle" >> /etc/systemd/system/autologin@.service'
-sudo ln -s -f /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service
-sudo systemctl daemon-reload
-sudo systemctl enable getty@tty1.service
+#export USER=$USER
+#export TERM=$TERM
+#sudo rm /etc/systemd/system/autologin@.service -f
+#sudo bash -c 'echo "[Service]" >> /etc/systemd/system/autologin@.service'
+#sudo bash -c 'echo "ExecStart=" >> /etc/systemd/system/autologin@.service'
+#sudo bash --preserve-env bash -c 'echo "ExecStart=-/sbin/agetty --noissue --autologin $USER %I $TERM" >> /etc/systemd/system/autologin@.service'
+#sudo bash -c 'echo "Type=idle" >> /etc/systemd/system/autologin@.service'
+#sudo ln -s -f /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service
+#sudo systemctl daemon-reload
+#sudo systemctl enable getty@tty1.service
 
 read -p "auto login ok?" GBYJ
 
