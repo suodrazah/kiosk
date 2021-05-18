@@ -82,10 +82,6 @@ if [ $TYPE = "L" ]; then
         curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
         sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
 
-        #Get DB Password
-        read -p "Wordpress DB Password?: " DBPWD
-        export DBPWD=$DBPWD
-        
         #Download relevant yaml
         rm docker-compose.yaml -f && rm docker-compose.yml -f
         clear
