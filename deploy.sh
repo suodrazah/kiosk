@@ -136,6 +136,51 @@ sudo --preserve-env bash -c 'echo "chromium-browser --incognito --disable-pinch 
 sudo echo "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && startx -- -nocursor" >> ~/.bash_profile
 source ~/.bash_profile
 
+#Rotate screen
+read -p "Rotate Screen? (N/y): " ROTATE
+ROTATE=${ROTATE:-N}
+if [ $ROTATE = "y" ]; then
+   read -p "Rotate degrees, '0', '90', '180' or '270'. (0): " ROTATION
+   ROTATION=${ROTATION:-0}
+   case $ROTATION in
+   0)
+    export ROTATION="normal"
+    ;;
+  90)
+    export ROTATION="right"
+    ;;
+  180)
+    export ROTATION="inverted"
+    ;;
+  270)
+    export ROTATION="left"
+    ;;
+  *)
+    export ROTATION="normal"
+    ;;
+   esac
+   DISPLAY=:0 xrandr -o $ROTATION
+   crontab -l > rotatecron
+   echo "@reboot sleep 30 && DISPLAY=:0 xrandr -o $ROTATION >/dev/null 2>&1" >> rotatecron
+   crontab rotatecron
+   rm rotatecron
+   clear
+   echo "Rotation occurs 30 seconds after boot, so don't panic!"
+   sleep 5
+fi
+
+#Scheduled reboot
+read -p "Schedule Reboot? (N/y): " REBOOT
+REBOOT=${REBOOT:-N}
+if [ $REBOOT = "y" ]; then
+   read -p "Enter Cronjob - default is 0400 daily (0 4 * * *): " REBOOT
+   REBOOT=${REBOOT:-"0 4 * * *"}
+   crontab -l > rebootcron
+   echo "$REBOOT /sbin/shutdown -r >/dev/null 2>&1" >> rebootcron
+   crontab rebootcron
+   rm rebootcron
+fi
+
 clear
 
 if [ $TYPE != "w" ]; then
