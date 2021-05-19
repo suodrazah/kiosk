@@ -52,7 +52,8 @@ if [ $WIFI = "y" ]; then
    export WLAN=$WLAN
    export SSID=$SSID
    export PSK=$PSK
-   sudo rm /etc/netplan/ -rf
+   sudo rm /etc/netplan/* -rf
+   sudo touch /etc/netplan/netplan.yaml
    sudo bash -c 'echo "network:" >> /etc/netplan/netplan.yaml'
    sudo bash -c 'echo "    ethernets:" >> /etc/netplan/netplan.yaml'
    sudo bash -c 'echo "        $ETH:" >> /etc/netplan/netplan.yaml'
