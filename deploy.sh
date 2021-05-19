@@ -2,15 +2,15 @@
 
 export BRANCH="ubuntu_dev"
 
+crontab -r
+
 clear
 #Change default password
 read -p "You should definitely change the default password, do this now? (Y/n): " CHANGEPWD
 CHANGEPWD=${CHANGEPWD:-Y}
-
 if [ $CHANGEPWD = "Y" ]; then
    passwd
 fi
-
 
 #ENABLE NO PASSWORD
 export USER=$USER
@@ -30,6 +30,18 @@ sudo apt install net-tools curl -y
 #Setup firewall
 sudo apt install ufw && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow 22/tcp && sudo ufw --force enable
 
+#Connect to WiFi
+
+#ENABLE NO PASSWORD
+export USER=$USER
+{ echo "[Service]"; 
+  echo "ExecStart=";
+  echo "ExecStart=-/sbin/agetty --noissue --autologin $USER %I $TERM";
+  echo "Type=idle"
+  } >~/getty-override.conf
+sudo env SYSTEMD_EDITOR="cp $HOME/getty-override.conf" systemctl edit getty@tty1.service
+
+
 #Get ZeroTier config ready
 clear
 read -p "Zerotier Network ID? (Press enter to ignore): " ZEROTIER
@@ -43,6 +55,27 @@ fi
 
 clear
 
+##Setup WiFi - IN DEV
+#read -p "Setup WiFi? (N/y): " WIFI
+#WIFI=${WIFI:-N}
+#if [ $WIFI = "y" ]; then
+#sudo apt install wpasupplicant -y
+#grep 
+#
+#fi
+
+#AUDIO
+sudo apt install libasound2 libasound2-plugins alsa-utils alsa-oss -y
+sudo apt install pulseaudio pulseaudio-utils -y
+sudo usermod -aG pulse,pulse-access $USER
+pacmd set-sink-mute n 0
+clear
+echo "Set volume 10 seconds from now, then press escape."
+echo "To return to the mixer, run \"alsamixer\" from SSH"
+sleep 10
+alsamixer
+
+clear
 #Update Timezone
 read -p "Timezone? (Australia/Hobart): " TIMEZONE
 TIMEZONE=${TIMEZONE:-Australia/Hobart}
@@ -136,7 +169,7 @@ sudo --preserve-env bash -c 'echo "chromium-browser --incognito --disable-pinch 
 sudo echo "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && startx -- -nocursor" >> ~/.bash_profile
 source ~/.bash_profile
 
-#Rotate screen
+#Rotate screen - TO DO - ROTATE TOUCH SCREEN
 read -p "Rotate Screen? (N/y): " ROTATE
 ROTATE=${ROTATE:-N}
 if [ $ROTATE = "y" ]; then
