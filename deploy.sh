@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#Added
+#WiFi, untested
+#Screen rotation - Broken, needs touch panel transform xinput
+#Audio, untested - need sample playback for confirm and volume leveling
+
 export BRANCH="ubuntu_dev"
 
 crontab -r
