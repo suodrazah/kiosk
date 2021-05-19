@@ -84,8 +84,9 @@ ZEROTIER=${ZEROTIER:-X}
 if [ $ZEROTIER != "X" ]; then
    #Join zerotier network
    curl -s https://install.zerotier.com | sudo bash
+   clear
    sudo zerotier-cli join $ZEROTIER
-   sleep 2
+   sleep 5
 fi
 
 clear
@@ -105,10 +106,10 @@ clear
 read -p "Timezone? (Australia/Hobart): " TIMEZONE
 TIMEZONE=${TIMEZONE:-Australia/Hobart}
 sudo timedatectl set-timezone Australia/Hobart
-sleep 2
 
 clear
 #Choose deployment type
+echo "********************************************"
 echo "Local or Web kiosk deployment (L/w)?"
 echo "Local - Installs NGINX and FileBrowser, or Wordpress and DB. Binds Kiosk address to localhost."
 echo "Web - Requests a URL to display in the kiosk."
@@ -119,15 +120,15 @@ clear
 
 if [ $TYPE = "L" ]; then
 
-    echo "Wordpress or NGINX (W/n)?"
+    echo "Wordpress or NGINX (w/N)?"
     echo "Wordpress - Installs Wordpress and DB."
     echo "NGINX - Installs NGINX and Filebrowser."
     echo "............."
     read LOCALTYPE
-    TYPE=${LOCALTYPE:-W}
+    TYPE=${LOCALTYPE:-N}
     clear
     
-    if [ $LOCALTYPE = "W" ]; then
+    if [ $LOCALTYPE = "w" ]; then
 
         #Set host
         export URL="http://localhost"
@@ -148,7 +149,7 @@ if [ $TYPE = "L" ]; then
         docker-compose up -d
         fi
     
-     if [ $LOCALTYPE = "n" ]; then
+     if [ $LOCALTYPE = "N" ]; then
     
         #Set host
         export URL="http://localhost:81"
@@ -247,27 +248,27 @@ fi
 clear
 
 if [ $TYPE != "w" ]; then
-    echo "Done!, rebooting in a few seconds."
+    echo "Done! (Probably)"
     hostname -I
-    sleep 10
+    read -p "Press enter to continue"
     sudo reboot
 fi
 
-if [ $LOCALTYPE = "n" ]; then
-    echo "Done!, rebooting in a few seconds."
-    echo "Browse to kiosk IP using LAN or ZeroTier to configure your content."
+if [ $LOCALTYPE = "N" ]; then
+    echo "Done! (Probably)"
+    echo "Browse to kiosk IP using LAN or ZeroTier to configure your static content."
     echo "Default username:password for filebrowser is admin:admin, and there's a dark mode."
     echo "Drag and drop your static content, browse to IP:81 for a preview."
     hostname -I
-    sleep 10
+    read -p "Press enter to continue"
     sudo reboot
 fi
 
-if [ $LOCALTYPE = "W" ]; then
-    echo "Done!, rebooting in a few seconds."
-    echo "Browse to kiosk IP using LAN or ZeroTier to configure your content."
+if [ $LOCALTYPE = "w" ]; then
+    echo "Done! (Probably)"
+    echo "Browse to kiosk IP using LAN or ZeroTier to configure your Wordpress content."
     hostname -I
-    sleep 10
+    read -p "Press enter to continue"
     sudo reboot
 fi
 
