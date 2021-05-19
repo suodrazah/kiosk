@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#TO DO - secret keyboard combo for local console
-
 export BRANCH="ubuntu_dev"
 
 crontab -r
@@ -37,31 +35,7 @@ clear
 sudo apt install ufw && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow 22/tcp && sudo ufw --force enable
 
 clear
-#Connect to WiFi
-
-clear
-#ENABLE NO PASSWORD
-export USER=$USER
-{ echo "[Service]"; 
-  echo "ExecStart=";
-  echo "ExecStart=-/sbin/agetty --noissue --autologin $USER %I $TERM";
-  echo "Type=idle"
-  } >~/getty-override.conf
-sudo env SYSTEMD_EDITOR="cp $HOME/getty-override.conf" systemctl edit getty@tty1.service
-
-clear
-#Get ZeroTier config ready
-read -p "Zerotier Network ID? (Press enter to ignore): " ZEROTIER
-ZEROTIER=${ZEROTIER:-X}
-if [ $ZEROTIER != "X" ]; then
-   #Join zerotier network
-   curl -s https://install.zerotier.com | sudo bash
-   sudo zerotier-cli join $ZEROTIER
-   sleep 2
-fi
-
-clear
-#Setup WiFi - !!!Untested in whole!!!
+#Setup WiFi
 read -p "Setup WiFi? (N/y): " WIFI
 WIFI=${WIFI:-N}
 if [ $WIFI = "y" ]; then
@@ -95,6 +69,17 @@ if [ $WIFI = "y" ]; then
    sleep 3
    echo "Continuing..."
    sleep 2
+
+clear
+#Get ZeroTier config ready
+read -p "Zerotier Network ID? (Press enter to ignore): " ZEROTIER
+ZEROTIER=${ZEROTIER:-X}
+if [ $ZEROTIER != "X" ]; then
+   #Join zerotier network
+   curl -s https://install.zerotier.com | sudo bash
+   sudo zerotier-cli join $ZEROTIER
+   sleep 2
+fi
 
 clear
 #Audio
@@ -206,7 +191,7 @@ sudo echo "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && startx -- -nocursor" >> ~/.
 source ~/.bash_profile
 
 clear
-#Rotate screen - TO DO - ROTATE TOUCH SCREEN
+#Rotate screen - !!!TO DO - ROTATE TOUCH SCREEN!!!
 read -p "Rotate Screen? (N/y): " ROTATE
 ROTATE=${ROTATE:-N}
 if [ $ROTATE = "y" ]; then
