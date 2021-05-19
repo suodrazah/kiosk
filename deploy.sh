@@ -74,6 +74,7 @@ if [ $WIFI = "y" ]; then
    sleep 3
    echo "Continuing..."
    sleep 2
+fi
 
 clear
 #Get ZeroTier config ready
