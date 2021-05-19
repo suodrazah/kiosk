@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#TO DO - secret keyboard combo for local console
+
 export BRANCH="ubuntu_dev"
 
 crontab -r
@@ -12,6 +14,7 @@ if [ $CHANGEPWD = "Y" ]; then
    passwd
 fi
 
+clear
 #ENABLE NO PASSWORD
 export USER=$USER
 { echo "[Service]"; 
@@ -21,17 +24,22 @@ export USER=$USER
   } >~/getty-override.conf
 sudo env SYSTEMD_EDITOR="cp $HOME/getty-override.conf" systemctl edit getty@tty1.service
 
+clear
 #Update
 sudo apt update && sudo apt upgrade -y 
 
+clear
 #Install required tools
 sudo apt install net-tools curl -y
 
+clear
 #Setup firewall
 sudo apt install ufw && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw allow 22/tcp && sudo ufw --force enable
 
+clear
 #Connect to WiFi
 
+clear
 #ENABLE NO PASSWORD
 export USER=$USER
 { echo "[Service]"; 
@@ -41,30 +49,55 @@ export USER=$USER
   } >~/getty-override.conf
 sudo env SYSTEMD_EDITOR="cp $HOME/getty-override.conf" systemctl edit getty@tty1.service
 
-
-#Get ZeroTier config ready
 clear
+#Get ZeroTier config ready
 read -p "Zerotier Network ID? (Press enter to ignore): " ZEROTIER
 ZEROTIER=${ZEROTIER:-X}
 if [ $ZEROTIER != "X" ]; then
-    #Join zerotier network
-    curl -s https://install.zerotier.com | sudo bash
-    sudo zerotier-cli join $ZEROTIER
-    sleep 2
+   #Join zerotier network
+   curl -s https://install.zerotier.com | sudo bash
+   sudo zerotier-cli join $ZEROTIER
+   sleep 2
 fi
 
 clear
+#Setup WiFi - !!!Untested in whole!!!
+read -p "Setup WiFi? (N/y): " WIFI
+WIFI=${WIFI:-N}
+if [ $WIFI = "y" ]; then
+   sudo apt install wpasupplicant -y
+   read -p "SSID: " SSID
+   read -p "PSK: " PSK
+   WLAN="$(ls /sys/class/net | grep -m 1 wl*)"
+   ETH="$(ls /sys/class/net | grep -m 1 enp*)"
+   export WLAN=$WLAN
+   export SSID=$SSID
+   export PSK=$PSK
+   sudo rm /etc/netplan/ -rf
+   sudo bash -c 'echo "network:" >> /etc/netplan/netplan.yaml'
+   sudo bash -c 'echo "    ethernets:" >> /etc/netplan/netplan.yaml'
+   sudo bash -c 'echo "        $ETH:" >> /etc/netplan/netplan.yaml'
+   sudo bash -c 'echo "            dhcp4: true" >> /etc/netplan/netplan.yaml'
+   sudo bash -c 'echo "            optional: true" >> /etc/netplan/netplan.yaml'
+   sudo bash -c 'echo "    version: 2" >> /etc/netplan/netplan.yaml'
+   sudo bash -c 'echo "    wifis:" >> /etc/netplan/netplan.yaml'
+   sudo --preserve-env bash -c 'echo "        $WLAN:" >> /etc/netplan/netplan.yaml'
+   sudo bash -c 'echo "            optional: true" >> /etc/netplan/netplan.yaml'
+   sudo bash -c 'echo "            access-points:" >> /etc/netplan/netplan.yaml'
+   sudo --preserve-env bash -c 'echo "                \"$SSID\":" >> /etc/netplan/netplan.yaml'
+   sudo --preserve-env bash -c 'echo "                    password: \"$PSK\"" >> /etc/netplan/netplan.yaml'
+   sudo bash -c 'echo "            dhcp4: true" >> /etc/netplan/netplan.yaml'
+   sudo netplan apply
+   echo "OK, WiFi should be coming online..."
+   sleep 5
+   echo "This should be your connection: "
+   iwgetid
+   sleep 3
+   echo "Continuing..."
+   sleep 2
 
-##Setup WiFi - IN DEV
-#read -p "Setup WiFi? (N/y): " WIFI
-#WIFI=${WIFI:-N}
-#if [ $WIFI = "y" ]; then
-#sudo apt install wpasupplicant -y
-#grep 
-#
-#fi
-
-#AUDIO
+clear
+#Audio
 sudo apt install libasound2 libasound2-plugins alsa-utils alsa-oss -y
 sudo apt install pulseaudio pulseaudio-utils -y
 sudo usermod -aG pulse,pulse-access $USER
@@ -83,7 +116,6 @@ sudo timedatectl set-timezone Australia/Hobart
 sleep 2
 
 clear
-
 #Choose deployment type
 echo "Local or Web kiosk deployment (L/w)?"
 echo "Local - Installs NGINX and FileBrowser, or Wordpress and DB. Binds Kiosk address to localhost."
@@ -151,12 +183,15 @@ if [ $TYPE = "w" ]; then
     read -p "Kiosk URL? (e.g. http://192.168.1.254:8080, https://site.example.com): " URL
 fi
 
+clear
 #Install minimum GUI components
 sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox -y
 
+clear
 #Install Chromium
 sudo apt install --no-install-recommends chromium-browser -y
 
+clear
 #Configure Autostart
 export URL=$URL
 sudo bash -c 'rm /etc/xdg/openbox/autostart -f'
@@ -165,10 +200,12 @@ sudo bash -c 'echo "xset s noblank" >> /etc/xdg/openbox/autostart'
 sudo bash -c 'echo "xset s off" >> /etc/xdg/openbox/autostart'
 sudo --preserve-env bash -c 'echo "chromium-browser --incognito --disable-pinch --overscroll-history-navigation=0 --ignore-gpu-blocklist --disable-features="TouchpadOverscrollHistoryNavigation" --enable-accelerated-video-decode --enable-gpu-rasterization  --noerrdialogs --disable-infobars --check-for-update-interval=31536000 --kiosk $URL" >> /etc/xdg/openbox/autostart'
 
+clear
 #Start GUI on boot
 sudo echo "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && startx -- -nocursor" >> ~/.bash_profile
 source ~/.bash_profile
 
+clear
 #Rotate screen - TO DO - ROTATE TOUCH SCREEN
 read -p "Rotate Screen? (N/y): " ROTATE
 ROTATE=${ROTATE:-N}
@@ -202,6 +239,7 @@ if [ $ROTATE = "y" ]; then
    sleep 5
 fi
 
+clear
 #Scheduled reboot
 read -p "Schedule Reboot? (N/y): " REBOOT
 REBOOT=${REBOOT:-N}
@@ -241,5 +279,4 @@ if [ $LOCALTYPE = "W" ]; then
     sudo reboot
 fi
 
-sleep 10
-sudo reboot
+exit
