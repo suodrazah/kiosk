@@ -56,7 +56,7 @@ if [ $WIFI = "y" ]; then
    sudo touch /etc/netplan/netplan.yaml
    sudo bash -c 'echo "network:" >> /etc/netplan/netplan.yaml'
    sudo bash -c 'echo "    ethernets:" >> /etc/netplan/netplan.yaml'
-   sudo bash -c 'echo "        $ETH:" >> /etc/netplan/netplan.yaml'
+   sudo --preserve-env bash bash -c 'echo "        $ETH:" >> /etc/netplan/netplan.yaml'
    sudo bash -c 'echo "            dhcp4: true" >> /etc/netplan/netplan.yaml'
    sudo bash -c 'echo "            optional: true" >> /etc/netplan/netplan.yaml'
    sudo bash -c 'echo "    version: 2" >> /etc/netplan/netplan.yaml'
@@ -196,7 +196,8 @@ sudo --preserve-env bash -c 'echo "chromium-browser --incognito --disable-pinch 
 clear
 #Start GUI on boot
 sudo echo "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && startx -- -nocursor" >> ~/.bash_profile
-source ~/.bash_profile
+#sudo tee -a "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && startx -- -nocursor" ~/.bash_profile
+#source ~/.bash_profile
 
 clear
 #Rotate screen - !!!TO DO - ROTATE TOUCH SCREEN!!!
