@@ -140,13 +140,14 @@ clear
 
 if [ $TYPE != "w" ]; then
     echo "Done!, rebooting in a few seconds."
-    echo "Using another PC, browse to the kiosk LAN IP (locally or ZeroTier) to configure your content"
     hostname -I
     sleep 10
     sudo reboot
 fi
 
-if [ $TYPE = "n" ]; then
+if [ $LOCALTYPE = "n" ]; then
+    echo "Done!, rebooting in a few seconds."
+    echo "Browse to kiosk IP using LAN or ZeroTier to configure your content."
     echo "Default username:password for filebrowser is admin:admin, and there's a dark mode."
     echo "Drag and drop your static content, browse to IP:81 for a preview."
     hostname -I
@@ -154,7 +155,13 @@ if [ $TYPE = "n" ]; then
     sudo reboot
 fi
 
-echo "Done!, rebooting in a few seconds."
+if [ $LOCALTYPE = "W" ]; then
+    echo "Done!, rebooting in a few seconds."
+    echo "Browse to kiosk IP using LAN or ZeroTier to configure your content."
+    hostname -I
+    sleep 10
+    sudo reboot
+fi
 
 sleep 10
 sudo reboot
