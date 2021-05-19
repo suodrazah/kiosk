@@ -140,7 +140,7 @@ source ~/.bash_profile
 read -p "Rotate Screen? (N/y): " ROTATE
 ROTATE=${ROTATE:-N}
 if [ $ROTATE = "y" ]; then
-   read -p "Rotate degrees, '0', '90', '180' or '270'. (0): " ROTATION
+   read -p "Rotate degrees - '0', '90', '180' or '270'. (0): " ROTATION
    ROTATION=${ROTATION:-0}
    case $ROTATION in
    0)
