@@ -38,3 +38,4 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/dev_ubuntu/deploy.s
 * **Touchscreen orientation function**
 * **Automatic disabling of system keys and a hotkeys for keyboard + mouse option**
 * **Automatic installation of useful chrome extensions - auto refresh, ublock origins, disable tabs and popups, etc**
+* **Alsamixer WebUI**
