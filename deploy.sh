@@ -108,6 +108,8 @@ sudo apt install libasound2 libasound2-plugins alsa-utils alsa-oss -y
 sudo apt install pulseaudio pulseaudio-utils -y
 sudo usermod -aG pulse,pulse-access $USER
 pacmd set-sink-mute n 0
+#sudo apt install python3.8 python3-pip -y
+#pip install flask
 #wget https://github.com/JiriSko/amixer-webui/releases/download/v1.0.0-rc/amixer-webui_1.0.0-rc_all.deb
 #sudo dpkg -i amixer-webui_1.0.0-rc_all.deb
 #sudo update-rc.d amixer-webui defaults
