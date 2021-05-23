@@ -108,6 +108,12 @@ sudo apt install libasound2 libasound2-plugins alsa-utils alsa-oss -y
 sudo apt install pulseaudio pulseaudio-utils -y
 sudo usermod -aG pulse,pulse-access $USER
 pacmd set-sink-mute n 0
+#wget https://github.com/JiriSko/amixer-webui/releases/download/v1.0.0-rc/amixer-webui_1.0.0-rc_all.deb
+#sudo dpkg -i amixer-webui_1.0.0-rc_all.deb
+#sudo update-rc.d amixer-webui defaults
+#sudo /etc/init.d/amixer-webui start
+#sudo /etc/init.d/amixer-webui enable
+#sudo ufw allow 8080/tcp
 
 clear
 #Update Timezone
@@ -258,6 +264,7 @@ clear
 
 if [ $TYPE != "w" ]; then
     echo "Done! (Probably)"
+    echo "Browse to IP:8080 for volume control."
     hostname -I
     read -p "Press enter to continue"
     sudo reboot
@@ -268,6 +275,7 @@ if [ $LOCALTYPE = "N" ]; then
     echo "Browse to kiosk IP using LAN or ZeroTier to configure your static content."
     echo "Default username:password for filebrowser is admin:admin, and there's a dark mode."
     echo "Drag and drop your static content, browse to IP:81 for a preview."
+#    echo "Browse to IP:8080 for volume control."
     hostname -I
     read -p "Press enter to continue"
     sudo reboot
@@ -276,6 +284,7 @@ fi
 if [ $LOCALTYPE = "w" ]; then
     echo "Done! (Probably)"
     echo "Browse to kiosk IP using LAN or ZeroTier to configure your Wordpress content."
+#    echo "Browse to IP:8080 for volume control."
     hostname -I
     read -p "Press enter to continue"
     sudo reboot
