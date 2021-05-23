@@ -246,12 +246,12 @@ clear
 read -p "Schedule Reboot? (N/y): " REBOOT
 REBOOT=${REBOOT:-N}
 if [ $REBOOT = "y" ]; then
-   read -p "Enter Cronjob - default is 0400 daily (0 4 * * *): " REBOOT
-   REBOOT=${REBOOT:-"0 4 * * *"}
-   crontab -l > rebootcron
-   echo "$REBOOT /sbin/shutdown -r >/dev/null 2>&1" >> rebootcron
-   crontab rebootcron
-   rm rebootcron
+   read -p "Enter Cronjob - default is 0400 daily (0 4 * * *): " REBOOTCRON
+   REBOOTCRON=${REBOOTCRON:-"0 4 * * *"}
+   crontab -l > crontemp
+   echo "$REBOOTCRON /sbin/shutdown -r >/dev/null 2>&1" >> crontemp
+   crontab crontemp
+   rm crontemp
 fi
 
 clear
