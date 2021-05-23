@@ -108,11 +108,6 @@ sudo apt install libasound2 libasound2-plugins alsa-utils alsa-oss -y
 sudo apt install pulseaudio pulseaudio-utils -y
 sudo usermod -aG pulse,pulse-access $USER
 pacmd set-sink-mute n 0
-clear
-echo "Set volume 10 seconds from now, then press escape."
-echo "To return to the mixer, run \"alsamixer\" from SSH"
-sleep 10
-alsamixer
 
 clear
 #Update Timezone
