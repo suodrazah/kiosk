@@ -39,3 +39,4 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/dev_ubuntu/deploy.s
 * **Automatic disabling of system keys and a hotkeys for keyboard + mouse option**
 * **Automatic installation of useful chrome extensions - auto refresh, ublock origins, disable tabs and popups, etc**
 * **Alsamixer WebUI**
+* **Realtime unidirectional delta sync tmpfs for a more responsive user experience e,g, wp-content/cache and nginx/www**
