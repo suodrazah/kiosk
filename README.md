@@ -23,7 +23,7 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/ubuntu_dev/deploy.s
 * **This will restrict the user to a single fullscreen browser instance.**
   * This still means that if you provide a page with access to the wider web, shenanigans could be had.
   * The local deployment includes wordpress or nginx and is useful for deploying your own kiosk.
-* **Join the configured ZeroTier network and remtoely managed internet connected machine.**
+* **Join the configured ZeroTier network and remotely manage internet connected kiosks.**
 
 ## Deployment:
 * **This will bring up a local or web kiosk**
