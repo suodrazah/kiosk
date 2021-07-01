@@ -211,7 +211,7 @@ sudo echo "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && startx -- -nocursor" >> ~/.
 #source ~/.bash_profile
 
 clear
-#Rotate screen - !!!TO DO - ROTATE TOUCH SCREEN!!!
+#Rotate screen - !!!TO DO - ROTATE/TRANSLATE TOUCH INPUT OF SCREEN!!!
 read -p "Rotate Screen? (N/y): " ROTATE
 ROTATE=${ROTATE:-N}
 if [ $ROTATE = "y" ]; then
@@ -261,7 +261,7 @@ clear
 
 if [ $TYPE != "w" ]; then
     echo "Done! (Probably)"
-    echo "Browse to IP:8080 for volume control."
+#    echo "Browse to IP:8080 for volume control."
     hostname -I
     read -p "Press enter to continue"
     sudo reboot
