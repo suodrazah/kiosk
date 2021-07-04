@@ -4,7 +4,7 @@ services:
     image:  wordpress
     restart: always
     volumes:
-      - wp-data:/var/www/htmll
+      - wp-data:/var/www/html
     networks:
       - internal-network
     ports:
