@@ -35,8 +35,7 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/dev_ubuntu/deploy.s
 ```
 
 ## To Be Added:
-* **Touchscreen orientation function**
-* **Automatic disabling of system keys and a hotkeys for keyboard + mouse option**
-* **Automatic installation of useful chrome extensions - restricted touch keyboard, auto idle refresh, ublock origins, disable tabs and popups, etc**
-* **Alsamixer WebUI**
+* **Touchscreen input orientation (sync with screen orientation**
+* **Automatic installation of useful chrome extensions - restricted touch keyboard, auto idle refresh, ublock origins, disable tabs and popups, auto crash refresh, etc**
+* **Alsamixer/volume WebUI**
 * **Realtime unidirectional delta sync tmpfs for a more responsive user experience e,g, wp-content/cache and nginx/www**
