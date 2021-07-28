@@ -148,13 +148,13 @@ if [ $TYPE = "L" ]; then
         sudo ufw allow 80/tcp
 
         #Install Docker and Compose
-        curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
+        curl -fsSLk https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
         sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
 
         #Download relevant yaml
         rm docker-compose.yaml -f && rm docker-compose.yml -f
         clear
-        curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/wordpress.yml -o docker-compose.yml
+        curl -fsSLk https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/wordpress.yml -o docker-compose.yml
 
         #Deploy containers
         docker-compose up -d
@@ -169,13 +169,13 @@ if [ $TYPE = "L" ]; then
         sudo ufw allow 80/tcp && sudo ufw allow 81/tcp
 
         #Install Docker and Compose
-        curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
+        curl -fsSLk https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
         sudo curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
 
         #Download relevant yaml
         rm docker-compose.yaml -f && rm docker-compose.yml -f
         clear
-        curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/nginx.yml -o docker-compose.yml
+        curl -fsSLk https://raw.githubusercontent.com/suodrazah/kiosk/$BRANCH/deploy/nginx.yml -o docker-compose.yml
     
         #Deploy containers
         docker-compose up -d
