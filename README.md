@@ -12,7 +12,7 @@ curl -fsSL https://raw.githubusercontent.com/suodrazah/kiosk/ubuntu_dev/deploy.s
 ## Prerequisites:
 * **Tested on**
   * AMD64
-    * [Ubuntu Server 20.04 LTS 64-bit & 32-bit](https://ubuntu.com/download/server/)
+    * [Ubuntu Server 20.04 LTS](https://ubuntu.com/download/server/)
 * **SSH Access**
 * **[Zerotier network account](https://www.zerotier.com/)**
   * Used for remote management
