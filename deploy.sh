@@ -263,7 +263,7 @@ if [ $TYPE != "w" ]; then
     echo "Done! (Probably)"
 #    echo "Browse to IP:8080 for volume control."
     hostname -I
-    read -p "Press enter to continue"
+    read -p "Press enter to continue" FOO
     sudo reboot
 fi
 
@@ -274,7 +274,7 @@ if [ $LOCALTYPE = "N" ]; then
     echo "Drag and drop your static content, browse to IP:81 for a preview."
 #    echo "Browse to IP:8080 for volume control."
     hostname -I
-    read -p "Press enter to continue"
+    read -p "Press enter to continue" FOO
     sudo reboot
 fi
 
@@ -283,7 +283,7 @@ if [ $LOCALTYPE = "w" ]; then
     echo "Browse to kiosk IP using LAN or ZeroTier to configure your Wordpress content."
 #    echo "Browse to IP:8080 for volume control."
     hostname -I
-    read -p "Press enter to continue"
+    read -p "Press enter to continue" FOO
     sudo reboot
 fi
 
