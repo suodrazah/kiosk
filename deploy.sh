@@ -129,6 +129,10 @@ read TYPE
 TYPE=${TYPE:-L}
 clear
 
+if [ $TYPE = "w" ]; then
+    read -p "Web Kiosk URL? (e.g. http://192.168.1.254:8080, https://site.example.com): " URL
+fi
+
 if [ $TYPE = "L" ]; then
 
     echo "Wordpress or NGINX (w/N)?"
@@ -182,10 +186,6 @@ if [ $TYPE = "L" ]; then
         fi   
     
     fi
-
-if [ $TYPE = "w" ]; then
-    read -p "Kiosk URL? (e.g. http://192.168.1.254:8080, https://site.example.com): " URL
-fi
 
 clear
 #Install minimum GUI components
