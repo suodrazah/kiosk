@@ -125,21 +125,21 @@ echo "Local or Web kiosk deployment (L/w)?"
 echo "Local - Installs NGINX and FileBrowser, or Wordpress and DB. Binds Kiosk address to localhost."
 echo "Web - Requests a URL to display in the kiosk."
 echo "............."
-read TYPE
-TYPE=${TYPE:-L}
+read -p "Select: " KIOSKTYPE
+KIOSKTYPE=${KIOSKTYPE:-L}
 clear
 
-if [ $TYPE = "w" ]; then
+if [ $KIOSKTYPE = "w" ]; then
     read -p "Web Kiosk URL? (e.g. http://192.168.1.254:8080, https://site.example.com): " URL
 fi
 
-if [ $TYPE = "L" ]; then
+if [ $KIOSKTYPE = "L" ]; then
 
     echo "Wordpress or NGINX (w/N)?"
     echo "Wordpress - Installs Wordpress and DB."
     echo "NGINX - Installs NGINX and Filebrowser."
     echo "............."
-    read LOCALTYPE
+    read -p "Select: " LOCALTYPE
     TYPE=${LOCALTYPE:-N}
     clear
     
@@ -259,7 +259,7 @@ fi
 
 clear
 
-if [ $TYPE != "w" ]; then
+if [ $KIOSKTYPE != "w" ]; then
     echo "Done! (Probably)"
 #    echo "Browse to IP:8080 for volume control."
     hostname -I
