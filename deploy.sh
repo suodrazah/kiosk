@@ -12,7 +12,7 @@
 # GNU General Public License for more details.
 # <http://www.gnu.org/licenses/>.
 
-export BRANCH="ubuntu_dev"
+export BRANCH="main"
 
 crontab -r
 
