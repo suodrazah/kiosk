@@ -40,7 +40,7 @@ sudo apt update && sudo apt upgrade -y
 
 clear
 #Install required tools
-sudo apt install net-tools curl -y
+sudo apt install wireless-tools net-tools curl -y
 
 clear
 #Setup firewall
