@@ -257,7 +257,7 @@ fi
 
 clear
 
-if [ $KIOSKTYPE != "w" ]; then
+if [ $KIOSKTYPE = "w" ]; then
     echo "Done! (Probably)"
 #    echo "Browse to IP:8080 for volume control."
     hostname -I
