@@ -55,7 +55,7 @@ if [ $WIFI = "y" ]; then
    read -p "SSID: " SSID
    read -p "PSK: " PSK
    WLAN="$(ls /sys/class/net | grep -m 1 wl*)"
-   ETH="$(ls /sys/class/net | grep -m 1 enp*)"
+   ETH="$(ls /sys/class/net | grep -m 1 'enp*\|eth*')"
    export WLAN=$WLAN
    export SSID=$SSID
    export PSK=$PSK
