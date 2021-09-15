@@ -120,12 +120,10 @@ sudo timedatectl set-timezone Australia/Hobart
 
 clear
 #Choose deployment type
-echo "********************************************"
 echo "Local or Web kiosk deployment (L/w)?"
 echo "Local - Installs NGINX and FileBrowser, or Wordpress and DB. Binds Kiosk address to localhost."
 echo "Web - Requests a URL to display in the kiosk."
-echo "............."
-read -p "Select: " KIOSKTYPE
+read -p "Select (L/w): " KIOSKTYPE
 KIOSKTYPE=${KIOSKTYPE:-L}
 clear
 
